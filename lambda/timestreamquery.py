@@ -5,6 +5,7 @@ import time
 import random
 import sys, traceback
 from timeit import default_timer as timer
+import numpy as np
 import datetime
 import pandas as pd
 import os
