@@ -12,6 +12,7 @@ import darts.models.forecasting.prophet_model
 from dotenv import load_dotenv
 import json
 from decimal import Decimal
+import numpy as np
 load_dotenv()
 
 def handler(event=None, context=None):
@@ -134,6 +135,8 @@ def handler(event=None, context=None):
     model_output = []
     for sensor_name in sensors:
         sensor_name_ = sensor_name + "_"
+        if np.isnan(df[sensor_name_][-1]):
+            continue
         prophet.fit(
             series[sensor_name_], 
             future_covariates=series_prediction[:-1],
