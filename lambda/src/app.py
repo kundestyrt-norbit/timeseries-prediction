@@ -8,13 +8,14 @@ from darts import TimeSeries
 from darts.utils.missing_values import fill_missing_values
 import sys
 import os
-from darts.models import Prophet
+import darts.models.forecasting.prophet_model
 from dotenv import load_dotenv
 import json
 from decimal import Decimal
+import numpy as np
 load_dotenv()
 
-def lambda_handler(event=None, context=None):
+def handler(event=None, context=None):
     #################################################
     ##### Timestream Configurations.  ###############
     #################################################
@@ -130,10 +131,12 @@ def lambda_handler(event=None, context=None):
 
 
 
-    prophet = Prophet()
+    prophet = darts.models.forecasting.prophet_model.Prophet()
     model_output = []
     for sensor_name in sensors:
         sensor_name_ = sensor_name + "_"
+        if np.isnan(df[sensor_name_][-1]):
+            continue
         prophet.fit(
             series[sensor_name_], 
             future_covariates=series_prediction[:-1],
@@ -164,4 +167,4 @@ def lambda_handler(event=None, context=None):
 
 
 if __name__ == '__main__':
-    lambda_handler()
+    handler()
