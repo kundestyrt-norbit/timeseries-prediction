@@ -52,7 +52,7 @@ pip install -r requirements.txt
 
 
 ### Files
-- `timestreamquery.py` - Tool for easy reading from AWS TimeStream database. Gotten from https://github.com/awslabs/amazon-timestream-tools/blob/mainline/integrations/sagemaker/timestreamquery.py. 
+- `timestreamquery.py` - Tool for easy reading from AWS TimeStream database. Gotten from https://github.com/awslabs/amazon-timestream-tools/blob/mainline/integrations/sagemaker/timestreamquery.py and changed a bit to support access key and secret key. 
 - `timestream_ml.ipynb` - A work in progress file, where multiple models have been tested. It is left here so that one can go to this file if one wants to try to improve the model in the future and get a reference of how the `darts`-package is used.
 - `timestream_prophet.ipyngb` - Working code for prediction that turned out to be quite accurate. Final model uses [Prophet from Facebook](https://facebook.github.io/prophet/) to do the predictions. Prophet needs to be retrained when new data is used, but currently the prediction for each sensor takes under 1 second in production. The data basis is the data from the sensors, and the weather [Location forecast from yr.no](https://developer.yr.no/featured-products/forecast/). Used as a basis for `lambda/src/app.py` 
 - `lambda/src/app.py` - Code running in production and making predictions. Derived from `timestream_prophet.ipynb`.
