@@ -97,6 +97,7 @@ def handler(event=None, context=None):
     df_prediction.index = df_prediction.index.tz_localize(None)
     df_prediction_renamed = df_prediction.rename(columns={
         '1h_air_temperature_': 'air_temperature_', 
+        '1h_relative_humidity_': 'relative_humidity_', 
         '1h_percipitation_': 'percipitation_',
         '1h_wind_speed_': 'wind_speed_',
         '1h_wind_direction_cos_': 'wind_direction_cos_',
@@ -104,6 +105,7 @@ def handler(event=None, context=None):
     })
     series_prediction = fill_missing_values(
         TimeSeries.from_dataframe(df_prediction_renamed, value_cols=[
+            'relative_humidity_',
             'air_temperature_', 
             'percipitation_', 
             'wind_speed_',
@@ -121,6 +123,7 @@ def handler(event=None, context=None):
     predicted_forecast.index.name = 'time_'
     series_prediction_test = fill_missing_values(
         TimeSeries.from_dataframe(predicted_forecast, value_cols=[
+            'relative_humidity_',
             'air_temperature_', 
             'percipitation_', 
             'wind_speed_',
