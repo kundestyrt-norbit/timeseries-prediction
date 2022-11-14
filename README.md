@@ -80,7 +80,7 @@ After deploying the new docker image, you need to go to
 ```
 AWS Console in eu-west-1 -> Lambda -> Functions -> sensor-prediction -> Image tab
 ``` 
-Click on `Deploy new image`. Then click on `Browse images` and click on the dropdown menu. Choose the image with the *Image tag* `latest`, and click on `Select image`. The new container image is now deployed.
+Click on `Deploy new image`. Then click on `Browse images` and click on the dropdown menu. Choose the image with the *Image tag* `latest`, and click on `Select image` and `Save`. The new container image is now deployed.
 
 
 ### Local testing with Docker
